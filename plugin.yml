@@ -1,0 +1,8 @@
+name: BetonQuestItemsAdder
+author: Voten641
+main: me.voten.betonquestitemsadder.Main
+version: 0.1
+api-version: 1.15
+depend: [ItemsAdder,BetonQuest]
+load: STARTUP
+commands:
