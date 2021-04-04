@@ -6,7 +6,7 @@
 </dl>
 <dl class="customResourceFieldmc_versions">
 <dt>Tested Minecraft Versions:</dt>
-<dd><ul class="plainList"><li>1.16</li></ul></dd>
+<dd><ul class="plainList"><li>1.12, 1.13, 1.14, 1.15, 1.16</li></ul></dd>
 </dl>
 </div>
 <img src="https://i.imgur.com/QztvB5p.png" class="bbCodeImage LbImage" alt="[​IMG]" data-url="https://i.imgur.com/QztvB5p.png" style=""> <br>
