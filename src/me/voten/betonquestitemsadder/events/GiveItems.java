@@ -10,32 +10,38 @@ import pl.betoncraft.betonquest.exceptions.QuestRuntimeException;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 public class GiveItems extends QuestEvent{
-	private final String item;
+	
+	private ItemStack item;
+	private int amount;
 
 	@SuppressWarnings("deprecation")
 	public GiveItems(Instruction instruction) throws InstructionParseException {
 		super(instruction);
-		this.item = instruction.getInstruction().substring(instruction.getInstruction().indexOf(" ")+1);
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	protected Void execute(String playerID) throws QuestRuntimeException {
-		int amount = 1;
-		String name = item;
+		String item = instruction.getInstruction().substring(instruction.getInstruction().indexOf(" ")+1);
 		if(item.contains(" ")) {
-			name = item.substring(0, item.indexOf(" "));
+			this.item = ItemsAdder.getCustomItem(item.substring(0, item.indexOf(" ")));
 			if(isInteger(item.substring(item.indexOf(" ")+1))) {
-				amount = Integer.parseInt(item.substring(item.indexOf(" ")+1));
+				this.amount = Integer.parseInt(item.substring(item.indexOf(" ")+1));
+			}
+			else {
+				this.amount = 1;
+			    throw new InstructionParseException("Amount must be a number"); 
 			}
 		}
-		ItemStack it = ItemsAdder.getCustomItem(name);
-		if(it == null) {
-			System.out.println("§c[BetonQuest -> ItemsAdder] Zla nazwa przedmiotu("+name+")");
+		else {
+			this.item = ItemsAdder.getCustomItem(instruction.getInstruction().substring(instruction.getInstruction().indexOf(" ")+1));
+			this.amount = 1;
+		}
+	}
+
+	@Override
+	protected Void execute(String playerID) throws QuestRuntimeException {
+		if(this.item == null) {
+			System.out.println("§c[BetonQuest -> ItemsAdder] Wrong item name("+item+")");
 			return null;
 		}
-		it.setAmount(amount);
-		PlayerConverter.getPlayer(playerID).getInventory().addItem(it);
+		this.item.setAmount(this.amount);
+		PlayerConverter.getPlayer(playerID).getInventory().addItem(this.item);
 		return null;
 	}
 

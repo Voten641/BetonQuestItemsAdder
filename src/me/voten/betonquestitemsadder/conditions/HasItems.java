@@ -11,30 +11,44 @@ import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 public class HasItems extends Condition{
 	private final String item;
+	private int amount;
 
 	@SuppressWarnings("deprecation")
 	public HasItems(Instruction instruction) throws InstructionParseException{
 		super(instruction);
-		this.item = instruction.getInstruction().substring(instruction.getInstruction().indexOf(" ")+1);
+		String item = instruction.getInstruction().substring(instruction.getInstruction().indexOf(" ")+1);
+		if(item.contains(" ")) {
+			this.item = item.substring(0, item.indexOf(" "));
+			if(isInteger(item.substring(item.indexOf(" ")+1))) {
+				this.amount = Integer.parseInt(item.substring(item.indexOf(" ")+1));
+			}
+			else {
+				this.amount = 1;
+			    throw new InstructionParseException("Amount must be a number"); 
+			}
+		}
+		else {
+			this.item = instruction.getInstruction().substring(instruction.getInstruction().indexOf(" ")+1);
+			this.amount = 1;
+		}
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	protected Boolean execute(String playerID) throws QuestRuntimeException {
-		int amount = 1;
-		String name = item;
-		if(item.contains(" ")) {
-			name = item.substring(0, item.indexOf(" "));
-			if(isInteger(item.substring(item.indexOf(" ")+1))) {
-				amount = Integer.parseInt(item.substring(item.indexOf(" ")+1));
-			}
-		}
 		ItemStack[] inventoryItems = PlayerConverter.getPlayer(playerID).getInventory().getContents();
+		int am = 0;
 		for(ItemStack it : inventoryItems) {
-			if(ItemsAdder.matchCustomItemName(it, name)) {
-				if(it.getAmount() >= amount) {
+			if(ItemsAdder.matchCustomItemName(it, this.item)) {
+				if(it.getAmount() >= this.amount) {
 					return true;
 				}
+				else {
+					am += it.getAmount();
+				}
+			}
+			if(am >= this.amount) {
+				return true;
 			}
 		}
 		return false;
