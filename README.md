@@ -35,6 +35,7 @@
 <li><i>'giveitems (itemsadder item name) [amount]'</i><b><b> - Gives the player predefined items</b></b><br>
 </li>
 <li><i>'setblockat (itemsadder block name) (x;y;z;world)'</i> <b><b>- Changes the block at the given position</b></b></li>
+<li><i>'playanimation (itemsadder animation name)' </i><b><b>- Play animated title</b></b></li>
 </ul><b><br>
 <img src="https://i.imgur.com/47WqR3y.png" alt="objectives.png" class="bbCodeImage LbImage" style="">
 <br>
