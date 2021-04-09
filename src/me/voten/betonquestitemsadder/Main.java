@@ -3,7 +3,6 @@ package me.voten.betonquestitemsadder;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,11 +11,13 @@ import me.voten.betonquestitemsadder.conditions.HasItems;
 import me.voten.betonquestitemsadder.conditions.IsBlock;
 import me.voten.betonquestitemsadder.conditions.WearItems;
 import me.voten.betonquestitemsadder.events.GiveItems;
+import me.voten.betonquestitemsadder.events.PlayAnimation;
 import me.voten.betonquestitemsadder.events.RemoveItems;
 import me.voten.betonquestitemsadder.events.SetBlockAt;
 import me.voten.betonquestitemsadder.objectives.BlockBreak;
 import me.voten.betonquestitemsadder.objectives.BlockPlace;
 import me.voten.betonquestitemsadder.objectives.CraftingItem;
+import me.voten.betonquestitemsadder.objectives.EnchantItem;
 import me.voten.betonquestitemsadder.objectives.PickupItem;
 import pl.betoncraft.betonquest.BetonQuest;
 
@@ -41,11 +42,14 @@ public class Main extends JavaPlugin{
 		BetonQuest.getInstance().registerEvents("removeitems", RemoveItems.class);
 		BetonQuest.getInstance().registerEvents("giveitems", GiveItems.class);
 		BetonQuest.getInstance().registerEvents("setblockat", SetBlockAt.class);
+		BetonQuest.getInstance().registerEvents("playanimation", PlayAnimation.class);
 		//objectives
 		BetonQuest.getInstance().registerObjectives("craftitems", CraftingItem.class);
 		BetonQuest.getInstance().registerObjectives("pickupitems", PickupItem.class);
 		BetonQuest.getInstance().registerObjectives("blockbreak", BlockBreak.class);
 		BetonQuest.getInstance().registerObjectives("blockplace", BlockPlace.class);
+		BetonQuest.getInstance().registerObjectives("enchantitem", EnchantItem.class);
+		BetonQuest.getInstance().registerObjectives("smeltingitems", SmeltingItem.class);
 	}
 	
 	public void UpdateCheck(int i) {
