@@ -2,11 +2,11 @@
 <div class="customResourceFields aboveInfo">
 <dl class="customResourceFieldnative_mc_version">
 <dt>Native Minecraft Version:</dt>
-<dd>1.16</dd>
+<dd>1.18</dd>
 </dl>
 <dl class="customResourceFieldmc_versions">
 <dt>Tested Minecraft Versions:</dt>
-<dd><ul class="plainList"><li>1.12, 1.13, 1.14, 1.15, 1.16</li></ul></dd>
+<dd><ul class="plainList"><li>1.18</li></ul></dd>
 </dl>
 </div><br>
 </dl>
